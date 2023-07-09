@@ -1,12 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Navbar } from './components/Navbar';
+import { Shop } from './pages/Shop/Shop';
+import { Cart } from './pages/Cart/Cart';
+import { ShopContextProvider } from './context/shop-context';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <ShopContextProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Shop/>}/>
+            <Route path="/cart" element={<Cart/>}/>
+          </Routes>
+        </Router>
+      </ShopContextProvider>
     </div>
   );
 }
