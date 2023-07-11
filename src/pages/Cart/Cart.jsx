@@ -7,6 +7,10 @@ import './Cart.css';
 
 export const Cart = () => {
   const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
+  const totalAmount = getTotalCartAmount();
+
+  const navigate = useNavigate();
+
   return (
     <div className="cart">
       <div>
@@ -19,6 +23,16 @@ export const Cart = () => {
           }
         })}
       </div>
+      {totalAmount > 0 ? (
+        <div className="checkout">
+          <p>Subtotal: ${totalAmount}</p>
+          <button onClick={() => navigate("/")}>Continue shopping</button>
+          <button>Checkout</button>
+        </div>
+      ) : (
+        <h1>Your cart is empty</h1>
+      )}
     </div>
+
   );
 };
